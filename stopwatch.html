@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stopwatch</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpMuUuPiQ2ohErFdCak3-W6PrSkdYV_PFgmQ&s) ;
+      background-repeat: no-repeat;
+      background-position: center;
+      scrollbar-width: none;
+      display: flex;
+      background-size: cover;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .stopwatch {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 300px;
+    }
+    #display {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .start { 
+        background-color: #4caf50; 
+        color: white; 
+    }
+    .stop { 
+        background-color: #f44336; 
+        color: white; 
+    }
+    .reset { 
+        background-color: #2196f3; 
+        color: white; }
+  </style>
+</head>
+<body>
+  <div class="stopwatch">
+    <h2>Stopwatch</h2>
+    <div id="display">00</div>
+    <button class="start" onclick="start()">Start</button>
+    <button class="stop" onclick="stop()">Stop</button>
+    <button class="reset" onclick="reset()">Reset</button>
+  </div>
+
+  <script>
+    let hours = 0;
+    let display = document.getElementById("display");
+    let timer = null;
+
+    function updateDisplay() {
+      let h = String(hours).padStart(2, '0');
+      display.textContent = `${h}`;
+    }
+
+    function start() {
+      if (timer !== null) return;
+      timer = setInterval(() => {
+        hours++;
+        // if (seconds == 60) {
+        //   seconds = 0;
+        //   minutes++;
+        // }
+        // if (minutes == 60) {
+        //   minutes = 0;
+        //   hours++;
+        // }
+        updateDisplay();
+      }, 1000);
+    }
+
+    function stop() {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    function reset() {
+      clearInterval(timer);
+      hours = 0;
+      updateDisplay();
+      timer = null;
+    }
+  </script>
+</body>
+</html>
